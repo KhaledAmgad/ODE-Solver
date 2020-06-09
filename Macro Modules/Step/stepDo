@@ -1,0 +1,94 @@
+vsim -gui work.StepCircuit
+
+add wave -position insertpoint  \
+sim:/StepCircuit/Clk \
+sim:/StepCircuit/reset \
+sim:/StepCircuit/inputDataOne \
+sim:/StepCircuit/inputDataTwo \
+sim:/StepCircuit/CoordWires \
+sim:/StepCircuit/muxWire \
+sim:/StepCircuit/compareResult \
+sim:/StepCircuit/incTime \
+sim:/StepCircuit/enableCoord \
+sim:/StepCircuit/AccBf1OV \
+sim:/StepCircuit/AccBf2OV \
+sim:/StepCircuit/err1OV \
+sim:/StepCircuit/err2OV \
+sim:/StepCircuit/ComparatorOV \
+sim:/StepCircuit/exceptionErr \
+sim:/StepCircuit/DivOV \
+sim:/StepCircuit/DivByZero \
+sim:/StepCircuit/DivFinished \
+sim:/StepCircuit/startDiv \
+sim:/StepCircuit/Mult1ResOV \
+sim:/StepCircuit/Mult2ResOV \
+sim:/StepCircuit/Mult3ResOV \
+sim:/StepCircuit/halfHStepOV \
+sim:/StepCircuit/LMultNOV \
+sim:/StepCircuit/AccBf1Output \
+sim:/StepCircuit/AccBf2Output \
+sim:/StepCircuit/error1 \
+sim:/StepCircuit/error2 \
+sim:/StepCircuit/error \
+sim:/StepCircuit/muxData \
+sim:/StepCircuit/N \
+sim:/StepCircuit/L \
+sim:/StepCircuit/LMultN \
+sim:/StepCircuit/LDivideE \
+sim:/StepCircuit/Mult1Res \
+sim:/StepCircuit/Mult2Res \
+sim:/StepCircuit/Mult3Res \
+sim:/StepCircuit/hStepOutput \
+sim:/StepCircuit/hStep \
+sim:/StepCircuit/hModified \
+sim:/StepCircuit/halfHStep \
+sim:/StepCircuit/Const1 \
+sim:/StepCircuit/Const2 \
+sim:/StepCircuit/DivEnable \
+sim:/StepCircuit/stepFinish
+
+force -freeze sim:/StepCircuit/Clk 0 0, 1 {50 ps} -r 100
+force -freeze sim:/StepCircuit/reset 1 0
+run 100
+
+
+force -freeze sim:/StepCircuit/Const1 0000000001110011 0
+force -freeze sim:/StepCircuit/Const2 0000000001000000 0
+force -freeze sim:/StepCircuit/reset 0 0
+force -freeze sim:/StepCircuit/enableCoord 1 0
+force -freeze sim:/StepCircuit/CoordWires 00 0
+force -freeze sim:/StepCircuit/N 0000000100000000 0
+force -freeze sim:/StepCircuit/L 0000000100000000 0
+force -freeze sim:/StepCircuit/hStep 0000000011000000 0
+force -freeze sim:/StepCircuit/inputDataOne 0000000001000000 0
+run 100
+
+force -freeze sim:/StepCircuit/inputDataOne 0000000011000000 0
+run 100
+
+force -freeze sim:/StepCircuit/CoordWires 10 0
+force -freeze sim:/StepCircuit/inputDataTwo 0000000111000000 0
+run 100
+
+force -freeze sim:/StepCircuit/inputDataTwo 0000000010000000 0
+run 100
+
+
+force -freeze sim:/StepCircuit/CoordWires 11 0
+force -freeze sim:/StepCircuit/DivEnable 1 0
+run 100
+
+force -freeze sim:/StepCircuit/DivEnable 0 0
+run 100
+run 100
+run 100
+run 100
+run 100
+run 100
+run 100
+run 100
+run 100
+run 100
+run 100
+
+
